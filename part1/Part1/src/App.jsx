@@ -27,13 +27,25 @@ const App = () => {
     setVotes(copy)
   }
 
+  const displayMostVoted = () => {
+    let startingPoint = 0
+    for( let i=0; i< anecdotes.length; i+=1){
+      if (votes[i] > votes[startingPoint]){
+        startingPoint = i
+      }
+    }
+        
+    return anecdotes[startingPoint]
+  }
+
   return (
     <div>
       {anecdotes[selected]}
       <p>has {votes[selected]} votes</p>
-      <br/>
+      <br />
       <Button onClick={handleVote} text='votes' />
       <Button onClick={handleGeneration} text='next anecdote'/>
+      <p>Anecdote with the most votes < br /> {displayMostVoted()}</p>
     </div>
   )
 }
